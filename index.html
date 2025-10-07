@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trò chơi tỏ tình 💖</title>
+<style>
+  body {
+    background: linear-gradient(120deg, #ffb6c1, #ffc0cb);
+    font-family: 'Comic Sans MS', cursive;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+  }
+  .page {
+    display: none;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .active {
+    display: flex;
+    animation: fadeIn 1s;
+  }
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+  button {
+    background-color: white;
+    color: #ff4081;
+    border: none;
+    padding: 10px 25px;
+    margin: 10px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+  button:hover {
+    background-color: #ff77aa;
+    color: white;
+  }
+  .heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: red;
+    transform: rotate(45deg);
+    animation: float 5s infinite ease-in-out;
+  }
+  .heart::before, .heart::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: red;
+    border-radius: 50%;
+  }
+  .heart::before { top: -10px; left: 0; }
+  .heart::after { left: -10px; top: 0; }
+  @keyframes float {
+    0% { transform: translateY(0) rotate(45deg); opacity: 1; }
+    100% { transform: translateY(-800px) rotate(45deg); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div id="page1" class="page active">
+  <h1>Hehe, chào người dễ thương 😳</h1>
+  <p>Muốn chơi một trò nhỏ với anh không?</p>
+  <button onclick="nextPage('page2')">Chơi 😆</button>
+  <button onclick="nextPage('pageEnd')">Không 😤</button>
+</div>
+
+<div id="page2" class="page">
+  <h1>Rồi nè 💖</h1>
+  <p>Thật ra… anh có thấy em hơi dễ thương không? 😚</p>
+  <button onclick="nextPage('page3')">Có chứ 😍</button>
+  <button onclick="nextPage('page4')">Không đâu 😏</button>
+</div>
+
+<div id="page3" class="page">
+  <h1>Hehe, em biết mà 😳</h1>
+  <p>Vậy anh trả lời thật nha...</p>
+  <p>Nếu em giảm được 10kg... anh làm người yêu em nhé 💞</p>
+  <button onclick="nextPage('pageYes')">Ok luôn 💖</button>
+  <button onclick="nextPage('pageNo')">Ờm... để suy nghĩ 😅</button>
+</div>
+
+<div id="page4" class="page">
+  <h1>Ờ k 😤</h1>
+  <p>Nhưng mà... nói chứ ai nhìn em mà không thấy đáng yêu được hả? 😳</p>
+  <button onclick="nextPage('page3')">Thôi được, có 😅</button>
+</div>
+
+<div id="pageYes" class="page">
+  <h1>Yayyyyy 💕</h1>
+  <p>Em biết mà, anh cũng thích em đúng hông 😍</p>
+  <p>Chuẩn bị tinh thần làm người yêu em nha 💖</p>
+</div>
+
+<div id="pageNo" class="page">
+  <h1>Ơ kìa 😭</h1>
+  <p>Không sao… em vẫn chờ tới ngày anh đổi ý 🥺</p>
+</div>
+
+<div id="pageEnd" class="page">
+  <h1>Ơ không chơi à 😢</h1>
+  <p>Thôi không sao… nhưng em vẫn thích anh đó 😳</p>
+</div>
+
+<script>
+  function nextPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 5000);
+  }
+  setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
